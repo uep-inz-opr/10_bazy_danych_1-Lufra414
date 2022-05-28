@@ -38,6 +38,6 @@ if __name__ == "__main__":
       sqlite_con.commit()
 
 
-      rg = ReportGenerator(connection, escape_string="(?)")
+      rg = ReportGenerator(sqlite_con, escape_string="(?)")
       rg.generate_report()
       print(rg.get_report())
