@@ -28,7 +28,7 @@ if __name__ == "__main__":
                     duration data_type INTEGER , 
                     celltower data_type INTEGER);''') 
     file = input()
-    with open(self.filename, 'r') as fin:
+    with open(file, 'r') as fin:
       reader = csv.reader(fin, delimiter=",")
       headers = next(reader)
       next(reader, None)  
