@@ -28,8 +28,8 @@ if __name__ == "__main__":
                   duration data_type INTEGER , 
                   celltower data_type INTEGER);''')
     
-	polaczenia_duze.csv = input()
-	with open('polaczenia_duze.csv','r') as fin: 
+	file = input()
+	with open(file,'r') as fin: 
      	  reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
         next(reader, None)  # skip the headers
         rows = [x for x in reader]
