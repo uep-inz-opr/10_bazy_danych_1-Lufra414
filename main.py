@@ -72,7 +72,7 @@ if __name__ == "__main__":
                   celltower data_type INTEGER);''')
     
 
-    with open(self.filen,'r') as fin: 
+    with open(file,'r') as fin: 
       reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
       next(reader, None)  # skip the headers
       rows = [x for x in reader]
