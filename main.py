@@ -16,7 +16,7 @@ class ReportGenerator:
     result = cursor.fetchone()[0]
     self.report_text = result
 
-  def get_report(self):	
+  def get_report(self): 
     return self.report_text
 
 if __name__ == "__main__":
@@ -28,8 +28,8 @@ if __name__ == "__main__":
                   duration data_type INTEGER , 
                   celltower data_type INTEGER);''')
     
-	  file = input()
-	  with open(file,'r') as fin: 
+    file = input()
+    with open(file,'r') as fin: 
       reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
       next(reader, None)  # skip the headers
       rows = [x for x in reader]
@@ -37,6 +37,6 @@ if __name__ == "__main__":
       sqlite_con.commit()
 
 
-     	rg = ReportGenerator(sqlite_con, escape_string="?")
+      rg = ReportGenerator(sqlite_con, escape_string="?")
       rg.generate_report()
       print(rg.get_report())
