@@ -19,6 +19,7 @@ class ReportGenerator:
   def get_report(self):	
     return self.report_text
 
+if __name__ == "__main__":
     sqlite_con = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES) 
     cur = sqlite_con.cursor()
     cur.execute('''CREATE TABLE polaczenia (from_subscriber data_type INTEGER, 
