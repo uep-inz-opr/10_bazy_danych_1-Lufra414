@@ -1,5 +1,5 @@
-import csv 
-import sqlite3 
+import csv
+import sqlite3
 
 
 
@@ -20,26 +20,22 @@ class ReportGenerator:
     return self.report_text
 
 if __name__ == "__main__":
-    sqlite_con = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES) 
+    sqlite_con = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
     cur = sqlite_con.cursor()
     cur.execute('''CREATE TABLE polaczenia (from_subscriber data_type INTEGER, 
-                  to_subscriber data_type INTEGER, 
-                  datetime data_type timestamp, 
-                  duration data_type INTEGER , 
-                  celltower data_type INTEGER);''')
-    
+                    to_subscriber data_type INTEGER, 
+                    datetime data_type timestamp, 
+                    duration data_type INTEGER , 
+                    celltower data_type INTEGER);''') 
     file = input()
-    with open(file,'r') as fin: 
-      reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
+    with open(self.filename, 'r') as fin:
+      reader = csv.reader(fin, delimiter=",")
       headers = next(reader)
-      next(reader, None)  # skip the headers
+      next(reader, None)  
       rows = [x for x in reader]
-      cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);", rows)
+      cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);",  rows)
       sqlite_con.commit()
-
 
       rg = ReportGenerator(sqlite_con, escape_string="?")
       rg.generate_report()
       print(rg.get_report())
-
-
