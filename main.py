@@ -28,15 +28,15 @@ if __name__ == "__main__":
                   duration data_type INTEGER , 
                   celltower data_type INTEGER);''')
     
-	file = input()
-	with open(file,'r') as fin: 
-     	  reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
-        next(reader, None)  # skip the headers
-        rows = [x for x in reader]
-        cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);", rows)
-        sqlite_con.commit()
+	  file = input()
+	  with open(file,'r') as fin: 
+      reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
+      next(reader, None)  # skip the headers
+      rows = [x for x in reader]
+      cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);", rows)
+      sqlite_con.commit()
 
 
-     	  rg = ReportGenerator(sqlite_con, escape_string="?")
-        rg.generate_report()
-        print(rg.get_report())
+     	rg = ReportGenerator(sqlite_con, escape_string="?")
+      rg.generate_report()
+      print(rg.get_report())
