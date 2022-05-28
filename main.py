@@ -27,7 +27,7 @@ if __name__ == "__main__":
                     datetime data_type timestamp, 
                     duration data_type INTEGER , 
                     celltower data_type INTEGER);''') 
-    file = input()
+    file = input().replace('(', '').replace(')', '').replace(' ', '').split(",")
     with open(file, 'r') as fin:
       reader = csv.reader(fin, delimiter=",")
       headers = next(reader)
