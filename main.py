@@ -31,7 +31,7 @@ if __name__ == "__main__":
                     celltower data_type INTEGER);''') 
     
     with open(file, 'r') as fin:
-      reader = csv.reader
+      reader = csv.reader(fin, delimiter=",")
       next(reader, None)  
       rows = [x for x in reader]
       cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);",  rows)
