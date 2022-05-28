@@ -11,7 +11,7 @@ class ReportGenerator:
 
   def generate_report(self):
     cursor = self.connection.cursor()
-    sql_query = f"Select sum(duration) from polaczenia"
+    sql_query = f"SELECT SUM(duration) FROM polaczenia"
     cursor.execute(sql_query)
     result = cursor.fetchone()[0]
     self.report_text = result
@@ -28,9 +28,9 @@ if __name__ == "__main__":
                   duration data_type INTEGER , 
                   celltower data_type INTEGER);''')
     
-    polaczania_duze_csv=input()
+    polaczania_duze.csv=input()
 
-    with open(file,'r') as fin: 
+    with open('polaczenia_duze.csv','r') as fin: 
       reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
       next(reader, None)  # skip the headers
       rows = [x for x in reader]
