@@ -28,7 +28,7 @@ if __name__ == "__main__":
                   duration data_type INTEGER , 
                   celltower data_type INTEGER);''')
     
-    polaczania_duze.csv=input()
+    polaczenia_duze.csv=input()
 
     with open('polaczenia_duze.csv','r') as fin: 
       reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
