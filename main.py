@@ -31,6 +31,7 @@ if __name__ == "__main__":
     file = input()
     with open(file,'r') as fin: 
       reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
+      headers = next(reader)
       next(reader, None)  # skip the headers
       rows = [x for x in reader]
       cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);", rows)
