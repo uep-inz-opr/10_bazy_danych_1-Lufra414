@@ -11,7 +11,7 @@ class ReportGenerator:
   def generate_report(self):
     cursor = self.connection.cursor()
     sql_query = f"Select sum(duration) from polaczenia"
-    cursor.execute(sql_query, args)
+    cursor.execute(sql_query)
     result = cursor.fetchone()[0]
     self.report_text = result
 
@@ -29,15 +29,15 @@ if __name__ == "__main__":
     
     polaczania_duze_csv=input()
 
-with open('polaczenia_duze.csv','r') as fin: 
-    # csv.DictReader uses first line in file for column headings by default
-    reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
-    next(reader, None)  # skip the headers
-    rows = [x for x in reader]
-    cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);", rows)
-    sqlite_con.commit()
+    with open('polaczenia_duze.csv','r') as fin: 
+    
+      reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
+      next(reader, None)  # skip the headers
+      rows = [x for x in reader]
+      cur.executemany("INSERT INTO polaczenia (from_subscriber, to_subscriber, datetime, duration , celltower) VALUES (?, ?, ?, ?, ?);", rows)
+      sqlite_con.commit()
 
 
-    rg = ReportGenerator(connection, escape_string="(%s)")
-    rg.generate_report()
-    print(rg.get_report())
+      rg = ReportGenerator(connection, escape_string="(%s)")
+      rg.generate_report()
+      print(rg.get_report())
