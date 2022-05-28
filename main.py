@@ -1,7 +1,7 @@
 import csv, sqlite3 
 
 
-#To samo co ostatnio, usunieta funkcja mogrify
+
 class ReportGenerator:
   def __init__(self,connection, escape_string = "(%s)"):
     self.connection = connection
@@ -30,7 +30,6 @@ if __name__ == "__main__":
     polaczania_duze_csv=input()
 
     with open('polaczenia_duze.csv','r') as fin: 
-    
       reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
       next(reader, None)  # skip the headers
       rows = [x for x in reader]
@@ -38,6 +37,6 @@ if __name__ == "__main__":
       sqlite_con.commit()
 
 
-      rg = ReportGenerator(connection, escape_string="(%s)")
+      rg = ReportGenerator(connection, escape_string="(?)")
       rg.generate_report()
       print(rg.get_report())
