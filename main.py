@@ -20,6 +20,7 @@ class ReportGenerator:
     return self.report_text
 
 if __name__ == "__main__":
+    pass
     file = input()
     sqlite_con = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES) 
     cur = sqlite_con.cursor()
