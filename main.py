@@ -30,7 +30,7 @@ if __name__ == "__main__":
     
     polaczenia_duze=input()
 
-    with open('polaczenia_duze.csv','r') as fin: 
+    with open(self.polaczenia_duze,'r') as fin: 
       reader = csv.reader(fin, delimiter = ";") # comma is default delimiter
       next(reader, None)  # skip the headers
       rows = [x for x in reader]
